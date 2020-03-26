@@ -15,6 +15,8 @@
  * Authentication Routes
  */
 
+$router->get('/login', 'Auth\LoginController@index');
+
 $router->post('/logout', [
     'as' => 'logout', function() use ($router)
     {
@@ -24,3 +26,11 @@ $router->post('/logout', [
 ]);
 
 $router->get('/', 'Home\HomeController@index');
+
+$router->group(['prefix' => 'admin', 'namespace' => 'Admin'], function () use ($router) {
+    $router->group(['prefix' => 'products', 'namespace' => 'Products'], function () use ($router) {
+        $router->get('/', 'ProductController@index');
+
+        $router->get('/create', 'ProductController@create');
+    });
+});

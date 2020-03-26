@@ -10,7 +10,7 @@
     {{-- Styles --}}
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url('css/materialdesignicons.min.css') }}" rel="stylesheet">
-
+    <link href="{{ url('css/sarabun.css') }}" rel="stylesheet">
     @stack('plugin-css')
 
     <link href="{{ url('css/custom.css') }}" rel="stylesheet">
@@ -19,9 +19,9 @@
 </head>
 
 <body>
-    <main>
+    <div class="wrapper-page">
         @yield('content')
-    </main>
+    </div>
 
     {{--Scripts--}}
     <script src="{{url('js/jquery.min.js')}}"></script>

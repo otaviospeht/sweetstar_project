@@ -1,6 +1,5 @@
-/**
- * Created by Speht on 24/03/2020.
- */
+moment.locale('pt-br');
+
 const cookie = {
     get: (cname) => {
         let name = cname + "=";
