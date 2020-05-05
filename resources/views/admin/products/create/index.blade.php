@@ -1,18 +1,5 @@
 @extends('layouts.default')
 
-@push('page-css')
-<style>
-    .divisor-right {
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
-        height: 100%;
-        width: 0;
-        position: absolute;
-        right: 0;
-        top: 0
-    }
-</style>
-@endpush
-
 @push('page-js')
 <script>
     $('#expiration_date').daterangepicker({

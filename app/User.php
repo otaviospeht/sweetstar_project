@@ -12,6 +12,17 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'token'
+        'token',
+        'nome',
+        'email',
+        'cpf',
+        'data_nasc',
+        'cel',
+        'cep',
+        'rua',
+        'numero',
+        'bairro',
+        'cidade',
+        'estado'
     ];
 }

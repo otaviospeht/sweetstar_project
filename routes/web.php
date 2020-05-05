@@ -15,7 +15,7 @@
  * Authentication Routes
  */
 
-$router->get('/login', 'Auth\LoginController@index');
+
 
 $router->post('/logout', [
     'as' => 'logout', function() use ($router)
@@ -25,7 +25,11 @@ $router->post('/logout', [
     }
 ]);
 
-$router->get('/', 'Home\HomeController@index');
+$router->group(['namespace' => 'Home'], function () use ($router) {
+    $router->get('/', 'HomeController@index');
+
+    $router->get('/search', 'HomeController@search');
+});
 
 $router->group(['prefix' => 'admin', 'namespace' => 'Admin'], function () use ($router) {
     $router->group(['prefix' => 'products', 'namespace' => 'Products'], function () use ($router) {
@@ -33,4 +37,20 @@ $router->group(['prefix' => 'admin', 'namespace' => 'Admin'], function () use ($
 
         $router->get('/create', 'ProductController@create');
     });
+
+    $router->group(['prefix' => 'users', 'namespace' => 'Users'], function () use ($router) {
+        $router->get('/', 'UserController@index');
+    });
+});
+
+$router->group(['prefix' => 'auth', 'namespace' => 'Auth'], function () use ($router) {
+    $router->get('/login', 'LoginController@index');
+
+    $router->get('/register', 'RegisterController@index');
+
+    $router->get('/profile', 'ProfileController@index');
+});
+
+$router->group(['prefix' => 'products', 'namespace' => 'Products'], function () use ($router) {
+    $router->get('/{id}', 'ProductsController@details');
 });

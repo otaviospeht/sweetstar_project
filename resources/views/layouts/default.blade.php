@@ -41,6 +41,7 @@
         <script src="{{url('js/popper.min.js')}}"></script>
         <script src="{{url('js/bootstrap.min.js')}}"></script>
         <script src="{{url('js/nprogress.js')}}"></script>
+        <script src="{{url('js/jquery.mask.js')}}"></script>
 
         @stack('plugins-js')
 
