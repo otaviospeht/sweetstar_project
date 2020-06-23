@@ -1,20 +1,42 @@
 @extends('layouts.wrapper')
 
 @push('page-css')
-    <style>
-        .logo-img {
-            max-width: 80%;
-            margin: 0 10%;
-        }
-    </style>
+
+@endpush
+
+@push('page-js')
+    <script>
+        $(() => {
+            let _form = $(`#login_form`);
+
+            $('form').on('submit', (e) => {
+                e.preventDefault();
+
+                $.ajax({
+                    url: _form.attr('action'),
+                    method: 'POST',
+                    data: _form.serialize(),
+                    success(res) {
+                        window.location.replace("{{ route('home') }}");
+                    },
+                    error(res) {
+                        $(`#error-text`).text(res.responseJSON)
+                    }
+                })
+            })
+        });
+    </script>
 @endpush
 
 @section('content')
     <div class="text-center">
-        <div class="logo-wrapper">
-            <img class="logo-img" src="{{ url('img/logo.png') }}">
+        <div class="logo-lg">
+            <img src="{{ url('img/logo.png') }}" alt="MeetaWeb" style="max-width: 120px">
         </div>
-        <form id="login_form" method="POST" action="">
+    </div>
+
+    <div class="card-box mt-2">
+        <form id="login_form" method="POST" action="{{ route('login') }}">
             <div class="form-row my-3">
                 <div class="col">
                     <div class="input-group">
@@ -33,10 +55,16 @@
                         </div>
                         <input id="password" name="password" type="password" class="form-control" placeholder="Senha">
                     </div>
+                    <small class="text-danger form-text" id="error-text"></small>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="col-12 col-lg-4 offset-lg-8">
+            <div class="form-row d-flex align-items-center">
+                <div class="col-6 col-lg-8 text-left">
+                    <small>
+                        <a href="/auth/register" class="text-primary">Cadastre-se</a>
+                    </small>
+                </div>
+                <div class="col-6 col-lg-4">
                     <button type="submit" class="btn btn-primary w-100">Entrar</button>
                 </div>
             </div>

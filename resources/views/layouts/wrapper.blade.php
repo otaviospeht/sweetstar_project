@@ -9,11 +9,11 @@
 
     {{-- Styles --}}
     <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ url('css/materialdesignicons.min.css') }}" rel="stylesheet">
-    <link href="{{ url('css/sarabun.css') }}" rel="stylesheet">
+    <link href="{{ url('css/icons.css') }}" rel="stylesheet">
     @stack('plugin-css')
 
     <link href="{{ url('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ url('css/light_theme.css') }}" rel="stylesheet">
 
     @stack('page-css')
 </head>
@@ -23,11 +23,34 @@
         @yield('content')
     </div>
 
+    <script>
+        var resizefunc = [];
+
+        function loading(local, text = '', time = 200) {
+            hideLoading();
+            $('body').after(`<div class="preloader">
+            <div id="preloader">
+                <div id="loader"></div>
+            </div>
+        </div>`);
+        }
+
+        function hideLoading() {
+            $('.preloader').remove();
+        }
+    </script>
+
     {{--Scripts--}}
     <script src="{{url('js/jquery.min.js')}}"></script>
     <script src="{{url('js/popper.min.js')}}"></script>
     <script src="{{url('js/bootstrap.min.js')}}"></script>
-    <script src="{{url('js/nprogress.js')}}"></script>
+    <script src="{{url('js/wow.min.js')}}"></script>
+    <script src="{{url('js/fastclick.js')}}"></script>
+    <script src="{{url('js/jquery.slimscroll.js')}}"></script>
+    <script src="{{url('js/detect.js')}}"></script>
+    <script src="{{url('js/waves.js')}}"></script>
+    <script src="{{url('js/jquery.mask.js')}}"></script>
+    <script src="{{url('js/moment.min.js')}}"></script>
 
     @stack('plugins-js')
 

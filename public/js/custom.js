@@ -33,3 +33,39 @@ const helper = {
         $('#loading').hide();
     }
 };
+
+$.ajaxSetup({
+    beforeSend() {
+        loading();
+    },
+    complete() {
+        hideLoading()
+    }
+});
+
+$(() => {
+    $(`a[href^="/carrinho/add"]`).on('click', function(e) {
+        e.preventDefault();
+
+        let _url = $(this).attr('href');
+
+        $.ajax({
+            url: _url,
+            method: 'POST',
+            beforeSend() {},
+            complete() {},
+            success(res) {
+                $.Notification.notify('success', 'top right', 'Sucesso', res);
+            },
+            error(res) {
+                if(res.status === 400) {
+                    $.Notification.notify('warning', 'top right', 'Aviso!', res.responseJSON);
+
+                    return false;
+                }
+
+                $.Notification.notify('error', 'top right', 'Ocorreu um erro desconhecido.');
+            }
+        });
+    });
+});
